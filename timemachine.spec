@@ -11,7 +11,6 @@ Source:		%{name}-%{version}.tar.bz2
 URL:		http://plugin.org.uk/timemachine/
 License:	GPL
 Group:		Sound
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	pkgconfig
 BuildRequires:	alsa-lib-devel jackit-devel libsamplerate-devel gtk2-devel libsndfile-devel lash-devel
 
