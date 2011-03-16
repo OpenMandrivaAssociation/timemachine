@@ -1,6 +1,6 @@
 %define name	timemachine
-%define version	0.3.1
-%define release %mkrel 7
+%define version	0.3.3
+%define release %mkrel 1
 
 Name: 	 	%{name}
 Summary: 	Records audio up to ten seconds ago
