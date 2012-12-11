@@ -1,0 +1,12 @@
+diff -urN timemachine-0.3.3/src/Makefile.in timemachine-0.3.3-patched/src/Makefile.in
+--- timemachine-0.3.3/src/Makefile.in	2009-09-24 00:44:27.000000000 +1100
++++ timemachine-0.3.3-patched/src/Makefile.in	2012-11-16 21:54:08.135055533 +1100
+@@ -234,7 +234,7 @@
+ 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+ timemachine$(EXEEXT): $(timemachine_OBJECTS) $(timemachine_DEPENDENCIES) 
+ 	@rm -f timemachine$(EXEEXT)
+-	$(LINK) $(timemachine_LDFLAGS) $(timemachine_OBJECTS) $(timemachine_LDADD) $(LIBS)
++	$(LINK) $(timemachine_LDFLAGS) $(timemachine_OBJECTS) $(timemachine_LDADD) $(LIBS) -lm
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)
