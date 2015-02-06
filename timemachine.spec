@@ -1,7 +1,7 @@
 Name:		timemachine
 Summary:	Records audio up to ten seconds ago
 Version:	0.3.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Sound
 URL:		http://plugin.org.uk/timemachine/
