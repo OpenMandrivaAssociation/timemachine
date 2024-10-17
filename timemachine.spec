@@ -4,7 +4,7 @@ Version:	0.3.3
 Release:	3
 License:	GPL
 Group:		Sound
-URL:		http://plugin.org.uk/timemachine/
+URL:		https://plugin.org.uk/timemachine/
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		timemachine-0.3.3-linkage.patch
 BuildRequires:	pkgconfig(alsa)
