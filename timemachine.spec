@@ -1,64 +1,72 @@
-Name:		timemachine
 Summary:	Records audio up to ten seconds ago
-Version:	0.3.3
-Release:	3
-License:	GPL
+Name:		timemachine
+Version:	0.3.4
+Release:	1
+License:	GPLv2+
 Group:		Sound
-URL:		https://plugin.org.uk/timemachine/
-Source:		%{name}-%{version}.tar.bz2
-Patch0:		timemachine-0.3.3-linkage.patch
+Url:		http://plugin.org.uk/timemachine/
+Source0:	https://github.com/swh/timemachine/releases/download/v%{version}/%{name}-%{version}.tar.gz
+Patch0:	timemachine-0.3.4-use-GtkType-instead-of-guint.patch
+Patch1:	timemachine-0.3.4-use-ladish-instead-of-lash.patch
+BuildRequires:	gettext
 BuildRequires:	pkgconfig(alsa)
-BuildRequires:	pkgconfig(jack)
-BuildRequires:	pkgconfig(samplerate)
+BuildRequires:	pkgconfig(flac)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(jack)
+BuildRequires:	pkgconfig(liblash) >= 1.1.1
+BuildRequires:	pkgconfig(liblo) >= 0.24
+BuildRequires:	pkgconfig(ncurses)
+BuildRequires:	pkgconfig(readline)
+BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	pkgconfig(sndfile)
-BuildRequires:	lash-devel
 
 %description
-I used to always keep a minidisc recorder in my studio running in a mode where
+I used to always keep a mini-disc recorder in my studio running in a mode where
 when you pressed record it wrote the last 10 seconds of audio to the disk and
-then caught up to realtime and kept recording. The recorder died and haven't
+then caught up to real-time and kept recording. The recorder died and haven't
 been able to replace it, so this is a simple jack app to do the same job. It
 has the advantage that it never clips and can be wired to any part of the jack
 graph.
-
 The idea is that I doodle away with whatever is kicking around in my studio
 and when I heard an interesting noise, I'd press record and capture it,
 without having to try and recreate it. :)
-
 I've been using it to record occasional bursts of interesting noise from jack
 apps feeding back into each other. It seems to be stable for me, but there
 could be threading issues and race condidtions if run without SCHED_FIFO (ie.
 without jackd -R).
 
+
+%files
+%doc ChangeLog README
+%{_bindir}/%{name}
+%{_datadir}/%{name}
+%{_datadir}/applications/openmandriva-%{name}.desktop
+
+#-----------------------------------------------------------------------------
+
 %prep
-%setup -q
-%patch0 -p1
+%autosetup -p1
 
 %build
-%configure2_5x
-%make
+%configure
+%make_build
+
 
 %install
-%makeinstall_std
+%make_install
 
-#menu
+# Install a menu entry
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/openmandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=JACK TimeMachine
 Comment=Records audio from ten seconds ago
-Exec=%{_bindir}/%{name}
+Exec=%{name}
 Icon=sound_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;AudioVideo;Audio;
+Categories=X-OpenMandrivaLinux-Multimedia-Sound;AudioVideo;Audio;
 Encoding=UTF-8
 EOF
 
-%files
-%doc AUTHORS ChangeLog NEWS README
-%{_bindir}/%{name}
-%{_datadir}/%{name}
-%{_datadir}/applications/mandriva-%{name}.desktop
 

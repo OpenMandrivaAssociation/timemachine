@@ -1,0 +1,56 @@
+diff -rupN timemachine-0.3.4.old/src/gtkmeter.c timemachine-0.3.4/src/gtkmeter.c
+--- timemachine-0.3.4.old/src/gtkmeter.c	2019-05-01 13:52:59.000000000 +0200
++++ timemachine-0.3.4/src/gtkmeter.c	2022-06-20 11:19:13.784100316 +0200
+@@ -48,10 +48,10 @@ static float iec_scale(float db);
+ 
+ static GtkWidgetClass *parent_class = NULL;
+ 
+-guint
++GtkType
+ gtk_meter_get_type ()
+ {
+-  static guint meter_type = 0;
++  static GtkType meter_type = 0;
+ 
+   if (!meter_type)
+     {
+diff -rupN timemachine-0.3.4.old/src/gtkmeter.h timemachine-0.3.4/src/gtkmeter.h
+--- timemachine-0.3.4.old/src/gtkmeter.h	2019-05-01 13:52:59.000000000 +0200
++++ timemachine-0.3.4/src/gtkmeter.h	2022-06-20 11:19:31.911404903 +0200
+@@ -87,7 +87,7 @@ struct _GtkMeterClass
+ GtkWidget*     gtk_meter_new                    (GtkAdjustment *adjustment,
+ 						 gint direction);
+ 
+-guint          gtk_meter_get_type               (void);
++GtkType          gtk_meter_get_type               (void);
+ GtkAdjustment* gtk_meter_get_adjustment         (GtkMeter     *meter);
+ 
+ void           gtk_meter_set_adjustment         (GtkMeter     *meter,
+diff -rupN timemachine-0.3.4.old/src/gtkmeterscale.c timemachine-0.3.4/src/gtkmeterscale.c
+--- timemachine-0.3.4.old/src/gtkmeterscale.c	2019-05-01 13:52:59.000000000 +0200
++++ timemachine-0.3.4/src/gtkmeterscale.c	2022-06-20 11:21:24.889301695 +0200
+@@ -45,10 +45,10 @@ static void meterscale_draw_notch(GtkMet
+ 
+ static GtkWidgetClass *parent_class = NULL;
+ 
+-guint
++GtkType
+ gtk_meterscale_get_type ()
+ {
+-  static guint meterscale_type = 0;
++  static GtkType meterscale_type = 0;
+ 
+   if (!meterscale_type)
+     {
+diff -rupN timemachine-0.3.4.old/src/gtkmeterscale.h timemachine-0.3.4/src/gtkmeterscale.h
+--- timemachine-0.3.4.old/src/gtkmeterscale.h	2019-05-01 13:52:59.000000000 +0200
++++ timemachine-0.3.4/src/gtkmeterscale.h	2022-06-20 11:21:07.668012606 +0200
+@@ -67,7 +67,7 @@ GtkWidget*     gtk_meterscale_new
+ 						 gfloat min,
+ 						 gfloat max);
+ 
+-guint          gtk_meterscale_get_type          (void);
++GtkType          gtk_meterscale_get_type          (void);
+ 
+ #ifdef __cplusplus
+ }

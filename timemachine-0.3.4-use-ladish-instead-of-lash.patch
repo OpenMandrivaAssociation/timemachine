@@ -1,0 +1,94 @@
+diff -rupN timemachine-0.3.4.old/configure timemachine-0.3.4/configure
+--- timemachine-0.3.4.old/configure	2019-05-08 09:55:00.000000000 +0200
++++ timemachine-0.3.4/configure	2022-06-20 11:39:52.353558213 +0200
+@@ -6031,19 +6031,19 @@ fi
+ if test "$tm_enable_lash" = "yes"; then
+ 
+ pkg_failed=no
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for lash-1.0 >= 0.4.0" >&5
+-$as_echo_n "checking for lash-1.0 >= 0.4.0... " >&6; }
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for liblash >= 1.1.1" >&5
++$as_echo_n "checking for liblash >= 1.1.1... " >&6; }
+ 
+ if test -n "$LASH_CFLAGS"; then
+     pkg_cv_LASH_CFLAGS="$LASH_CFLAGS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lash-1.0 >= 0.4.0\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "lash-1.0 >= 0.4.0") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"liblash >= 1.1.1\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "liblash >= 1.1.1") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+-  pkg_cv_LASH_CFLAGS=`$PKG_CONFIG --cflags "lash-1.0 >= 0.4.0" 2>/dev/null`
++  pkg_cv_LASH_CFLAGS=`$PKG_CONFIG --cflags "liblash >= 1.1.1" 2>/dev/null`
+ 		      test "x$?" != "x0" && pkg_failed=yes
+ else
+   pkg_failed=yes
+@@ -6055,12 +6055,12 @@ if test -n "$LASH_LIBS"; then
+     pkg_cv_LASH_LIBS="$LASH_LIBS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lash-1.0 >= 0.4.0\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "lash-1.0 >= 0.4.0") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"liblash >= 1.1.1\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "liblash >= 1.1.1") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+-  pkg_cv_LASH_LIBS=`$PKG_CONFIG --libs "lash-1.0 >= 0.4.0" 2>/dev/null`
++  pkg_cv_LASH_LIBS=`$PKG_CONFIG --libs "liblash >= 1.1.1" 2>/dev/null`
+ 		      test "x$?" != "x0" && pkg_failed=yes
+ else
+   pkg_failed=yes
+@@ -6081,9 +6081,9 @@ else
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        LASH_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "lash-1.0 >= 0.4.0" 2>&1`
++	        LASH_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "liblash >= 1.1.1" 2>&1`
+         else
+-	        LASH_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "lash-1.0 >= 0.4.0" 2>&1`
++	        LASH_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "liblash >= 1.1.1" 2>&1`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$LASH_PKG_ERRORS" >&5
+@@ -6105,7 +6105,7 @@ fi
+ 
+ $as_echo "#define HAVE_LASH 1" >>confdefs.h
+ 
+-    LASH_VERSION=$( pkg-config --modversion lash-1.0 )
++    LASH_VERSION=$( pkg-config --modversion liblash )
+ 
+ cat >>confdefs.h <<_ACEOF
+ #define LASH_VERSION "$LASH_VERSION"
+diff -rupN timemachine-0.3.4.old/configure.in timemachine-0.3.4/configure.in
+--- timemachine-0.3.4.old/configure.in	2019-05-08 09:54:12.000000000 +0200
++++ timemachine-0.3.4/configure.in	2022-06-20 11:31:13.788784116 +0200
+@@ -41,11 +41,11 @@ AC_ARG_ENABLE(lash,
+ ])
+ 
+ if test "$tm_enable_lash" = "yes"; then
+-  PKG_CHECK_MODULES(LASH, lash-1.0 >= 0.4.0, LASH_FOUND="yes", LASH_FOUND="no")
++  PKG_CHECK_MODULES(LASH, liblash >= 1.1.1, LASH_FOUND="yes", LASH_FOUND="no")
+   
+   if test "$LASH_FOUND" = "yes"; then
+     AC_DEFINE(HAVE_LASH, 1, [whether or not we are supporting lash])
+-    LASH_VERSION=$( pkg-config --modversion lash-1.0 )
++    LASH_VERSION=$( pkg-config --modversion liblash )
+     AC_DEFINE_UNQUOTED(LASH_VERSION, "$LASH_VERSION", [The version of lash we're compiling against])
+     AC_SUBST(LASH_CFLAGS)
+     AC_SUBST(LASH_LIBS)
+diff -rupN timemachine-0.3.4.old/src/main.c timemachine-0.3.4/src/main.c
+--- timemachine-0.3.4.old/src/main.c	2019-05-01 13:52:59.000000000 +0200
++++ timemachine-0.3.4/src/main.c	2022-06-20 11:31:44.525285056 +0200
+@@ -31,7 +31,7 @@
+ #include <gtk/gtk.h>
+ 
+ #ifdef HAVE_LASH
+-#include <lash/lash.h>
++#include <lash-1.0/lash/lash.h>
+ 
+ lash_client_t *lash_client;
+ #endif
