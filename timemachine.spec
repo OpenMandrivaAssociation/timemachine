@@ -8,6 +8,11 @@ Url:		http://plugin.org.uk/timemachine/
 Source0:	https://github.com/swh/timemachine/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Patch0:	timemachine-0.3.4-use-GtkType-instead-of-guint.patch
 Patch1:	timemachine-0.3.4-use-ladish-instead-of-lash.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(flac)
